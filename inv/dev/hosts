@@ -11,9 +11,12 @@ sw-1
 sw-2
 
 [arista_switches:vars]
-ansible_user=admin
+; variables specific to arista switches
 ansible_network_os=eos
-ansible_ssh_pass=alta3
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
+ansible_user=admin   
 
 [cisco_switches]
 ; description of our cisco ~/mycode/inventory
@@ -24,9 +27,21 @@ cisco2      ansible_host=192.168.0.2
 ; variables specific to cisco switches
 ansible_network_os=ios
 ansible_user=admin
-ansible_ssh_pass=ciscoskeerit123
 
 ; this is a group of groups
 [all_switches:children]
 arista_switches
 cisco_switches
+
+[aristaswitchessecure]
+; description of our arista inventory
+sw-1         ansible_host=sw-1
+sw-2         ansible_host=sw-2
+    
+[aristaswitchessecure:vars]
+; variables specific to arista switches
+ansible_network_os=eos
+ansible_connection=network_cli
+ansible_become=yes
+ansible_become_method=enable
+ansible_user=admin
