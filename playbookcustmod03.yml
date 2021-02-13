@@ -1,0 +1,27 @@
+---
+- name: Using our new module
+  hosts: localhost
+
+  tasks:
+  - name: Dennis
+    my_new_test_module:
+      name: Dennis
+      age: 37
+    register: results
+  - debug:
+      var: results
+  - name: Arthur
+    my_new_test_module:
+      name: Arthur
+      age: 39
+    register: results
+  - debug:
+      var: results
+  - name: Sir Lancelot
+    my_new_test_module:
+      name: Sir Lancelot
+      age: 35
+    register: results
+  - debug:
+      var: results
+
